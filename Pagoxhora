@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de Pago de Empleado</title>
+</head>
+<body>
+    <h1>Calculadora de Pago de Empleado</h1>
+    <form onsubmit="calcularPago(); return false;">
+        <label for="nombre">Nombre del empleado:</label>
+        <input type="text" id="nombre" required><br>
+
+        <label for="categoria">Categoría:</label>
+        <select id="categoria">
+            <option value="A">Categoría A</option>
+            <option value="B">Categoría B</option>
+            <option value="C">Categoría C</option>
+        </select><br>
+
+        <label for="horas">Horas de trabajo:</label>
+        <input type="number" id="horas" required><br>
+
+        <input type="submit" value="Calcular Pago">
+    </form>
+
+    <p>El pago del empleado es: <span id="resultado"></span></p>
+
+    <script>
+        function calcularPago() {
+            var nombre = document.getElementById('nombre').value;
+            var categoria = document.getElementById('categoria').value;
+            var horas = parseFloat(document.getElementById('horas').value);
+            var pagoPorHora;
+
+            // Determinar el pago por hora según la categoría
+            switch (categoria) {
+                case 'A':
+                    pagoPorHora = 36.90;
+                    break;
+                case 'B':
+                    pagoPorHora = 25.80;
+                    break;
+                case 'C':
+                    pagoPorHora = 21.30;
+                    break;
+                default:
+                    pagoPorHora = 0;
+                    break;
+            }
+
+            // Calcular el pago total
+            var pagoTotal = horas * pagoPorHora;
+
+            // Mostrar el resultado en la página
+            document.getElementById('resultado').textContent = "El empleado " + nombre + " debe recibir $" + pagoTotal.toFixed(2);
+
+        }
+    </script>
+</body>
+</html>
