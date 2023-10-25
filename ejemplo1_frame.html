@@ -1,14 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <tittle>Ejemplo 1</tittle>
-    <table>
-       <frameset cols="25%, 25%, 50%" bodercolor=#EC1616>
-            <tr>
-                <th rowspan="2"> <frame src="pagina1.html></frame> </th>
-                <th> <frame src="pagina2.html></frame> </th>
-                <td>   <frame src="pagina3.html></frame> </td>
-            </tr>
-    </frameset>
-   </head>       
+<head>
+    <title>Calculadora de Precio con Descuento</title>
+</head>
+<body>
+    <h1>Calculadora de Precio con Descuento</h1>
+    <form id="calculator-form">
+        <label for="quantity">Cantidad de productos:</label>
+        <input type="number" id="quantity" min="1" required>
+        <button type="button" onclick="calcularPrecio()">Calcular Precio</button>
+    </form>
+    <p>El precio final es: <span id="resultado"></span></p>
+
+    <script>
+        function calcularPrecio() {
+           
+            var cantidad = parseInt(document.getElementById('quantity').value);
+
+           
+            var precioUnitario = 10; // Cambia esto al precio real del producto
+
+          
+            var precioTotal = cantidad * precioUnitario;
+
+          
+            if (cantidad > 12) {
+                precioTotal -= precioTotal * 0.15; // Aplicar un descuento del 15%
+            }
+
+      
+            document.getElementById('resultado').textContent = "$" + precioTotal.toFixed(2);
+        }
+    </script>
+</body>
 </html>
