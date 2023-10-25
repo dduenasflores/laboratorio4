@@ -1,5 +1,51 @@
+<!DOCTYPE html>
 <html>
 <head>
-  Pagina 2
+    <title>Página de Cálculo</title>
 </head>
+<body>
+    <h1>Calculadora de Precio</h1>
+    <form onsubmit="return calcularPrecio()">
+        <table>
+            <tr>
+                <td>Nombre de producto</td>
+                <td><input type="text" id="producto" required></td>
+            </tr>
+            <tr>
+                <td>Cantidad</td>
+                <td><input type="number" id="cantidad" required></td>
+            </tr>
+            <tr>
+                <td>Precio</td>
+                <td><input type="number" id="precio" required></td>
+            </tr>
+        </table>
+        <input type="submit" value="Calcular">
+    </form>
+    <p>El precio final es: <span id="resultado"></span></p>
+
+    <script>
+        function calcularPrecio() {
+            var producto = document.getElementById('producto').value;
+            var cantidad = parseInt(document.getElementById('cantidad').value);
+            var precio = parseFloat(document.getElementById('precio').value);
+
+            var precioTotal = cantidad * precio;
+
+            if (cantidad > 12) {
+                precioTotal *= 0.85; // Aplicar un descuento del 15%
+            }
+
+            document.getElementById('resultado').textContent = "El precio final de " + cantidad + " " + producto + "(s) es: $" + precioTotal.toFixed(2);
+
+            return false; // Evita que se envíe el formulario al servidor
+        }
+    </script>
+</body>
 </html>
+En este código, hemos eliminado el atributo action del formulario y hemos agregado un manejador de evento onsubmit que llama a la función calcularPrecio(). La función calcularPrecio() toma los valores del formulario, realiza el cálculo en JavaScript y muestra el resultado en la página sin enviar una solicitud al servidor. El return false; al final de la función evita que el formulario se envíe al servidor. Esto debería resolver el problema del error 405 en GitHub Pages.
+
+
+
+
+
